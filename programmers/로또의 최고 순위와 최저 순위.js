@@ -42,4 +42,4 @@ function solution(lottos, win_nums) {
 
   return answer;
 }
-console.log(solution(lottos,win_nums));
+solution(lottos,win_nums);
