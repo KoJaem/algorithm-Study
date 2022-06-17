@@ -6,7 +6,7 @@ function solution(lottos, win_nums) {
 
   const checkMax = () => {
     let count = 0;
-    lottos.map(data => {
+    lottos.forEach(data => {
       if (data === 0) count++;
       else win_nums.includes(data) && count++;
     });
@@ -15,7 +15,7 @@ function solution(lottos, win_nums) {
 
   const checkMin = () => {
     let count = 0;
-    lottos.map(data => {
+    lottos.forEach(data => {
       win_nums.includes(data) && count++;
     });
     return count;
@@ -42,3 +42,4 @@ function solution(lottos, win_nums) {
 
   return answer;
 }
+console.log(solution(lottos,win_nums));
