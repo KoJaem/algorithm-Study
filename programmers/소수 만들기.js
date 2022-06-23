@@ -1,3 +1,5 @@
+// Math.sqrt(n) : n 에 대한 제곱근을 반환해줌
+
 function solution(nums) {
   let answer = 0;
 
@@ -15,11 +17,10 @@ function solution(nums) {
 }
 
 const checkPrime = num => {
-  for (let i = num - 1; i > 1; --i) {
-    if (num % i === 0) {
-      return false;
-    }
+  for (let i = 2; i <= Math.sqrt(num); ++i) {
+    if (num % i === 0) return false;
   }
   return true;
 };
 
+solution([1, 2, 3, 4]);
