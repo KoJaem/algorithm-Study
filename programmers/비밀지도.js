@@ -8,7 +8,7 @@ const parseNum2 = (num, n) => {
     count.push(num % 2);
     num = parseInt(num / 2);
   }
-  count.reverse();
+  count.reverse()
   while (count.length !== n) {
     count.unshift(0);
   }
@@ -22,8 +22,6 @@ function solution(n, arr1, arr2) {
 
   const map2 = arr2.map(data => parseNum2(data, n));
 
-  console.log(map1);
-  console.log(map2);
 
 
   for (let i = 0; i < n; ++i) {
