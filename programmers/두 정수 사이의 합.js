@@ -1,3 +1,8 @@
+// 좀 더 수학적인 풀이
+function solution(a, b) {
+  return ((a + b) * (Math.abs(b - a) + 1)) / 2;
+}
+
 const a = 3;
 const b = 10;
 
