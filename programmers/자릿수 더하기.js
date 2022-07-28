@@ -3,9 +3,9 @@ const n = 123;
 function solution(n)
 {
   let answer = 0;
-  const array = n.toString();
-  for(let i = 0; i < array.length; ++i) {
-    answer += Number(array[i]);
+  const str = n.toString();
+  for(let i = 0; i < str.length; ++i) {
+    answer += Number(str[i]);
   }
   return answer;
 }
