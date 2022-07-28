@@ -2,11 +2,10 @@ const n = 123;
 
 function solution(n)
 {
-  let answer = n % 10;
-  const length = n.toString().length;
-  for(let i = length-1; i > 0; --i) {
-    const pow = Math.pow(10, i);
-    answer += Math.floor((n / pow) % 10);
+  let answer = 0;
+  const array = n.toString();
+  for(let i = 0; i < array.length; ++i) {
+    answer += Number(array[i]);
   }
   return answer;
 }
