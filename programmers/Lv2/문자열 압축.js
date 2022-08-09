@@ -1,8 +1,8 @@
-const s = "a";
+const s = "aabbaccc";
 function solution(s) {
-  let answer = 1001;
-  let array = [];
-  let string = "";
+  let answer = Infinity;
+  let array;
+  let string;
 
   for (let i = 0; i < s.length; ++i) {
     let start = 0;
@@ -34,9 +34,7 @@ function solution(s) {
     if (answer > string.length) answer = string.length;
   }
 
-  console.log(answer);
   return answer;
 }
 
 solution(s);
-// console.log(solution(s));
