@@ -1,53 +1,84 @@
-// 숫자가 높을수록 우선순위가 높음
+// 핵심은 target 을 -1 로 바꾼다던가 하는것이 아닌,
+// location 값을 통해서 계산하는것!
+
 const priorities = [1, 1, 9, 1, 1, 1];
 const location = 0;
+
 function solution(priorities, location) {
-  const target = priorities[location];
-
-  const arr = [...priorities];
-  arr[location] = -1;
-
-  if (Math.max(...priorities) === target)
-    return arr.filter(e => e === target || e === -1).indexOf(-1) + 1;
-
-  let reverseCheck = false;
-
+  let max;
+  let cur;
   let count = 0;
-
   while (true) {
-    const max = Math.max(...arr);
-    const cur = reverseCheck ? arr[arr.length - 1] : arr[0];
-    if (cur === -1) {
-      if (max === target) return ++count;
-    }
-    if (cur !== max) {
-      if (reverseCheck) {
-        arr.pop();
-        arr.reverse();
-        reverseCheck = !reverseCheck;
-        arr.push(cur);
-        continue;
-      } else {
-        arr.shift();
-        arr.push(cur);
+    max = Math.max(...priorities);
+    cur = priorities.shift();
+    if (cur === max) {
+      count++;
+      if (location === 0) {
+        return count;
       }
     } else {
-      if (reverseCheck) {
-        arr.pop();
-        count++;
-        continue;
-      } else {
-        arr.reverse();
-        reverseCheck = !reverseCheck;
-        arr.pop();
-        count++;
-      }
+      priorities.push(cur);
     }
+    location--;
+
+    if (location === -1) location = priorities.length - 1;
   }
 }
 
 // solution(priorities, location);
 console.log(solution(priorities, location));
+
+
+// // 숫자가 높을수록 우선순위가 높음
+// const priorities = [1, 1, 9, 1, 1, 1];
+// const location = 0;
+// function solution(priorities, location) {
+//   const target = priorities[location];
+
+//   const arr = [...priorities];
+//   arr[location] = -1;
+
+//   if (Math.max(...priorities) === target)
+//     return arr.filter(e => e === target || e === -1).indexOf(-1) + 1;
+
+//   let reverseCheck = false;
+
+//   let count = 0;
+
+//   while (true) {
+//     const max = Math.max(...arr);
+//     const cur = reverseCheck ? arr[arr.length - 1] : arr[0];
+//     if (cur === -1) {
+//       if (max === target) return ++count;
+//     }
+//     if (cur !== max) {
+//       if (reverseCheck) {
+//         arr.pop();
+//         arr.reverse();
+//         reverseCheck = !reverseCheck;
+//         arr.push(cur);
+//         continue;
+//       } else {
+//         arr.shift();
+//         arr.push(cur);
+//       }
+//     } else {
+//       if (reverseCheck) {
+//         arr.pop();
+//         count++;
+//         continue;
+//       } else {
+//         arr.reverse();
+//         reverseCheck = !reverseCheck;
+//         arr.pop();
+//         count++;
+//       }
+//     }
+//   }
+// }
+
+// // solution(priorities, location);
+// console.log(solution(priorities, location));
 
 // // 숫자가 높을수록 우선순위가 높음
 // const priorities = [1, 1, 9, 1, 1, 1];
