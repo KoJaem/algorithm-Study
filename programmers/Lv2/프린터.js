@@ -6,32 +6,82 @@ function solution(priorities, location) {
 
   const arr = [...priorities];
   arr[location] = -1;
-  console.log(priorities);
 
+  if (Math.max(...priorities) === target)
+    return arr.filter(e => e === target || e === -1).indexOf(-1) + 1;
 
-  if(Math.max(...priorities) === target) return arr.filter(e=> e === target || e === -1).indexOf(-1) + 1;
+  let reverseCheck = false;
 
   let count = 0;
-  while(true) {
-    console.log(arr)
+
+  while (true) {
     const max = Math.max(...arr);
-    const cur = arr[0];
-    if(cur === -1) {
-      if(max === target) return ++count;
+    const cur = reverseCheck ? arr[arr.length - 1] : arr[0];
+    if (cur === -1) {
+      if (max === target) return ++count;
     }
-    if(cur !== max) {
-      arr.shift();
-      arr.push(cur);
-    }
-    else {
-      arr.shift();
-      count++;
+    if (cur !== max) {
+      if (reverseCheck) {
+        arr.pop();
+        arr.reverse();
+        reverseCheck = !reverseCheck;
+        arr.push(cur);
+        continue;
+      } else {
+        arr.shift();
+        arr.push(cur);
+      }
+    } else {
+      if (reverseCheck) {
+        arr.pop();
+        count++;
+        continue;
+      } else {
+        arr.reverse();
+        reverseCheck = !reverseCheck;
+        arr.pop();
+        count++;
+      }
     }
   }
 }
 
 // solution(priorities, location);
 console.log(solution(priorities, location));
+
+// // 숫자가 높을수록 우선순위가 높음
+// const priorities = [1, 1, 9, 1, 1, 1];
+// const location = 0;
+// function solution(priorities, location) {
+//   const target = priorities[location];
+
+//   const arr = [...priorities];
+//   arr[location] = -1;
+//   console.log(priorities);
+
+//   if(Math.max(...priorities) === target) return arr.filter(e=> e === target || e === -1).indexOf(-1) + 1;
+
+//   let count = 0;
+//   while(true) {
+//     console.log(arr)
+//     const max = Math.max(...arr);
+//     const cur = arr[0];
+//     if(cur === -1) {
+//       if(max === target) return ++count;
+//     }
+//     if(cur !== max) {
+//       arr.shift();
+//       arr.push(cur);
+//     }
+//     else {
+//       arr.shift();
+//       count++;
+//     }
+//   }
+// }
+
+// // solution(priorities, location);
+// console.log(solution(priorities, location));
 
 /////////////////////////////////
 
