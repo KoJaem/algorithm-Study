@@ -15,21 +15,26 @@ function solution(survey, choices) {
   };
 
   
+  for(let i = 0; i < survey.length; ++i) {
+    const first = survey[i].slice(0, 1) // 첫번째 문자
+    const second = survey[i].slice(1); // 두번째 문자
 
-  for (let i = 0; i < survey.length; ++i) {
     const score = choices[i] - 4;
-    if (score === 0) continue;
 
+    if (score === 0) continue;
+    
     if (score > 0) {
-      obj[survey[i].slice(1)] += score;
+      obj[second] += score;
     } else {
-      obj[survey[i].slice(0, 1)] += -score;
+      obj[first] += -score;
     }
   }
-  console.log(obj)
-  // const sortObj = Object.entries(obj).sort((a, b) => b[1] - a[1]);
 
-
+  answer += obj.R >= obj.T ? 'R' : 'T';
+  answer += obj.C >= obj.F ? 'C' : 'F';
+  answer += obj.J >= obj.M ? 'J' : 'M';
+  answer += obj.A >= obj.N ? "A" : "N";
+  
 
   return answer;
 }
